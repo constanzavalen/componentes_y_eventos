@@ -1,7 +1,11 @@
+import './App.css' 
+import Formulario from './Components/Formulario/Formulario'
 
 const App = () => {
   return (
-    <div>App</div>
+    <div>
+      <Formulario/>
+    </div>
   )
 }
 
