@@ -1,5 +1,6 @@
 import Registro from './Components/Registro/Registro'
 import './App.css'
+
 const App = () => {
   return (
     <div className="container" >
@@ -7,8 +8,7 @@ const App = () => {
         <div className="card-body">
             <Registro/>
         </div>
-      </div>
-      
+      </div> 
     </div>
   )
 }
