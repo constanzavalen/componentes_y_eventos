@@ -1,12 +1,18 @@
+import PropTypes from "prop-types";
 
-const Alert = () => {
+const Alert = ({color, texto}) => {
   return (
     <div>
-        <div className="alert alert-danger" role="alert">
-        A simple danger alert—check it out!
+        <div className={"alert-" + color} role="alert">
+          {texto}
         </div>
     </div>
   )
+}
+
+Alert.propTypes = {
+  color: PropTypes.string.isRequired,
+  texto: PropTypes.string.isRequired
 }
 
 export default Alert
