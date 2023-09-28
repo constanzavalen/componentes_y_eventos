@@ -35,8 +35,11 @@ const Registro = ({mensajeAlerta, setMensajeAlerta}) => {
           setError={setError} 
           setMensajeAlerta={setMensajeAlerta}
         />
-      </div>
+      </div >
+      <div className="col-10 text-center">
       {mensajeAlerta && mostrarAlerta(error, mensajeAlerta)}
+      </div>
+      
     </div>
   )
 }
