@@ -1,43 +1,39 @@
-import { useState } from "react"
+import { useState } from "react";
+import PropTypes from "prop-types";
 
-const Formulario = () => {
-const [name, setName] = useState('');
-const [error, setError] = useState(false)
-const [email, setEmail] = useState('');
-const [contraseña, setContraseña] = useState('');
-const [confirma, setConfirma] =useState('');
+const Formulario = ({setError, setMensajeAlerta}) => {
 
+  const [name, setName] = useState('');
+  const [email, setEmail] = useState('');
+  const [contraseña, setContraseña] = useState('');
+  const [confirma, setConfirma] = useState('');
 
-
-const handleSubmit = (e) => {
-  e.preventDefault()
-  if(name ===''|| email ===''){
-      setError(true)
-      
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    if (name === '' || email === '') {
+      setError(true);
+      setMensajeAlerta('Debes ingresar tu nombre');
     } else if (contraseña === '' || confirma === '') {
       setError(true);
-      
-      alert('La contraseña es requerida.');
+      setMensajeAlerta('La contraseña es requerida.');
     } else if (contraseña !== confirma) {
       setError(true);
-      
-      alert('Las contraseñas no coinciden.');
-  
-}else{
-  alert('¡Tu registro fue exitoso!')
-  setError(false)
-  setName('')
-  setEmail('')
-  setContraseña('')
-  setConfirma('')
-}
-}
+      setMensajeAlerta('Las contraseñas no coinciden.');
+    } else {
+      setMensajeAlerta('¡Tu registro fue exitoso!');
+      setError(false);
+      setName('');
+      setEmail('');
+      setContraseña('');
+      setConfirma('');
+    }
+  }
+
   return (
     <div className="container">
       <p>O usa tu email para registrarte</p>
-      {error ? <p className="error">Hay un error</p>: null}
       <form onSubmit={handleSubmit}>
-        <div className="w-50">
+        <div className="w-100">
           <label className="form-label">Nombre</label>
           <input 
           className="form-control" 
@@ -46,7 +42,7 @@ const handleSubmit = (e) => {
           onChange={e=> setName(e.target.value)}/>
         </div>
 
-        <div className="w-50">
+        <div className="w-100">
           <label className="form-label">Email</label>
           <input 
           className="form-control" 
@@ -55,29 +51,34 @@ const handleSubmit = (e) => {
           onChange={e=> setEmail(e.target.value)}/>
         </div>
 
-        <div className="w-50">
+        <div className="w-100">
           <label className="form-label">Contraseña</label>
           <input 
           className="form-control" 
-          type="text" 
+          type="password" 
           value={contraseña} 
           onChange={e=> setContraseña(e.target.value)}/>
         </div>
 
-        <div className="w-50">
+        <div className="w-100">
           <label className="form-label">Confirma tu contraseña</label>
           <input 
           className="form-control" 
-          type="text" 
+          type="password" 
           value={confirma} 
           onChange={e=> setConfirma(e.target.value)}/>
         </div>  
 
-        <button className="btn btn-primary mt-4 w-50">Registrase</button>
+        <button className="btn btn-primary mt-4 w-100">Registrase</button>
 
       </form>
     </div>
   )
+}
+
+Formulario.propTypes = {
+  setError: PropTypes.func.isRequired,
+  setMensajeAlerta: PropTypes.func.isRequired
 }
 
 export default Formulario
